@@ -18,7 +18,7 @@
    string :nickname  
    text :email  
  >アソシエーション  
-   has_many :prototypes  
+   has_many :products  
    has_many :comments  
    has_many :likes  
 ##comments table  
@@ -27,14 +27,14 @@
    text :comment  
  >アソシエーション  
    belongs_to :user  
-   belongs_to :prototype  
+   belongs_to :product  
 ##likes table  
  >カラム  
    integer :like_id  
    integer :user_id  
    integer :product_id  
- >アソシエーション  
-   belongs_to :prototype  
+ >アソシエーション 
+   belongs_to :product  
    belpngs_to :user  
 ##images table  
  >カラム  
