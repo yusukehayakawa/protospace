@@ -1,38 +1,46 @@
 #Protospace DB設計  
 ***  
-##prototypes table  
+##prducts table  
  >カラム  
    integer :id  
    string :name  
-   text :image_url  
    text :catch_copy  
    text :concept  
-   string :tag_list  
  >アソシエーション  
    beongs_to :user  
    has_many :comments  
    has_many :likes  
+   has_many :images  
 
 ##users table  
  >カラム  
-   integer :user_id  
+   integer :id  
    string :nickname  
    text :email  
  >アソシエーション  
    has_many :prototypes  
    has_many :comments  
-   has_manu :likes  
+   has_many :likes  
 ##comments table  
  >カラム  
-   integer :comment_id  
+   integer :id  
    text :comment  
-   text :text  
  >アソシエーション  
    belongs_to :user  
    belongs_to :prototype  
- ##likes table  
+##likes table  
  >カラム  
-
+   integer :like_id  
+   integer :user_id  
+   integer :product_id  
  >アソシエーション  
    belongs_to :prototype  
    belpngs_to :user  
+##images table  
+ >カラム  
+   integer :id  
+   text :image  
+   integer :product_id  
+   integer :status  
+ >アソシエーション  
+   belongs_to :product  
