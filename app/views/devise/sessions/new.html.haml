@@ -1,16 +1,22 @@
 .container
-  %form.form-signin
-    %h2.form-signin-heading Please sign in
-    %label.sr-only{for: "inputEmail"} Email address
-    %input#inputEmail.form-control{autofocus: "", placeholder: "Email address", required: "", type: "email"}/
-    %label.sr-only{for: "inputPassword"} Password
-    %input#inputPassword.form-control{placeholder: "Password", required: "", type: "password"}/
-    .checkbox
-      %label
-        %input{type: "checkbox", value: "remember-me"}/
-        Remember me
-    %button.btn.btn-lg.btn-primary.btn-block{type: "submit"} Sign in
-  .text-center
-    %p
-      Not a member?
-      %a{href: "/users/sign_in"} Sign up now
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .form-signin#new_user{action: "/users/sign_in"}
+      %h2.form-signin-heading Please sign in
+      = f.label :email, class: "sr-only", for: "inputEmail"
+      %br
+      = f.email_field :email, class: "form-control", id: "inputEmail", autofocus: "", placeholder: "Email address", required: "", type: "email"
+
+      = f.label :password, class: "sr-only", for: "user_password"
+      %br
+      = f.password_field :password, autocomplete: "off", class: "form-control", id: "inputPassword", placeholder: "Password", type: "password"
+      - if devise_mapping.rememberable?
+      .checkbox
+        = f.label :remember_me
+          = f.hidden_field :remember_me, value: "0"
+          = f.check_box :remember_me, value: "1", id: "user_remember_me"
+      .actions
+        = f.submit name: "commit", value: "Sign in", class: "button btn btn-lg btn-primary btn-block"
+    .text-center
+      %p
+        Not a member?
+        = link_to "Sign up now", new_user_registration_path, method: :get
