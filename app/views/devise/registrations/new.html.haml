@@ -12,10 +12,10 @@
               = button_tag "Add Image", class: "btn btn-primary"
               = f.file_field :avater
           .user-user-email.row
-            .user-email.col-md-2
+            .user-email
               = f.email_field :email, autofocus: true, type: "email", placeholder: "E-Mail"
           .user-user-password.row
-            .user-password.col-md-4
+            .user-user-password
               = f.password_field :password, autocomplete: "off", placeholder: "Password"
         .col-md-12
           %h4 Member of
@@ -32,3 +32,4 @@
               = f.text_area :works, cols: "30", rows: "4", placeholder: "Works"
       .row.text-center.user-btn
         = f.submit class: "btn btn-lg btn-primary btn-block", value: "Save"
+        = render "devise/shared/links"
