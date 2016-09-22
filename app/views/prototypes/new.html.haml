@@ -1,5 +1,5 @@
 .container.proto-new{action: "/prototypes"}
-  = form_for(@prototype) do |f|
+  = form_for @prototype do |f|
     .col-md-8.col-md-offset-2
       %header.row.user-nav.row
         .col-md-12
@@ -7,16 +7,21 @@
       .row
         .col-md-12
           .cover-image-upload
-            = f.fields_for :images do |f|
-              = f.file_field :image
+            = f.fields_for :images do |images_form|
+              = images_form.file_field :image
+              = images_form.hidden_field :status, value: "main"
         .col-md-12
           %ul.proto-sub-list.list-group
-            %li.list-group-item.col-md-4
-              .image-upload
-                = f.file_field :image, type: "file"
-            %li.list-group-item.col-md-4
-              .image-upload
-                = f.file_field :image, type: "file"
+            = f.fields_for :images do |images_form|
+              %li.list-group-item.col-md-4
+                .image-upload
+                  = images_form.file_field :image
+                  = images_form.hidden_field :status, value: "sub"
+            = f.fields_for :images do |images_form|
+              %li.list-group-item.col-md-4
+                .image-upload
+                  = images_form.file_field :image
+                  = images_form.hidden_field :status, value: "sub"
             %li.list-group-item.col-md-4
               .image-upload-plus
                 %span +
@@ -24,16 +29,16 @@
         .col-md-12
           = f.text_field :catch_copy, type: "text", placeholder: "Catch Copy"
         .col-md-12
-          = f.text_area :concept, name: "", cols: "30", rows: "4", placeholder: "Concept"
+          = f.text_area :concept, cols: "30", rows: "4", placeholder: "Concept"
         .col-md-12
           %h4 Tag List
           .row
             .col-md-3
               %input{type: "text", placeholder: "Web Design"}/
-          .col-md-3
-            %input{type: "text", placeholder: "UI"}/
-          .col-md-3
-            %input{type: "text", placeholder: "Application"}/
+            .col-md-3
+              %input{type: "text", placeholder: "UI"}/
+            .col-md-3
+              %input{type: "text", placeholder: "Application"}/
     .row.text-center.proto-btn
       = f.submit class: "btn btn-lg btn-primary btn-block", value: "Publish"
 
