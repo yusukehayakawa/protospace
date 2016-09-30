@@ -14,23 +14,25 @@
 
 .container.proto-list
   .row
-    .col-sm-4.col-md-3.proto-content
-      .thumbnail
-        %a{href: "/prototypes/show"}
-          = image_tag("sample.png")
+    - @prototypes.each do |prototype|
+      .col-sm-4.col-md-3.proto-content
+        .thumbnail
+          = link_to prototype_path(prototype.id) do
+            = image_tag(prototype.images.main[0].image)
           .caption
-            %h3 Salvation Army on iPad App Wireframe
-            .proto-meta
-              .proto-user
-                %a{href: "#"} by user
-              .proto-posted
-                Apr 26
-            %ul.proto-tag-list.list-inline
-              %li
-                %a{href: "#", class: "btn btn-default"} iPad
-              %li
-                %a{href: "#", class: "btn btn-default"} wireframe
-    
+            %h3
+              = prototype.name
+              .proto-meta
+                .proto-user
+                  = link_to "by #{prototype.user.username}", "/users/#{prototype.user.id}"
+                .proto-posted
+                  Apr 26
+              %ul.proto-tag-list.list-inline
+                %li
+                  %a{href: "#", class: "btn btn-default"} iPad
+                %li
+                  %a{href: "#", class: "btn btn-default"} wireframe
+
 .text-center
   %ul.pagination
     %li.disabled
