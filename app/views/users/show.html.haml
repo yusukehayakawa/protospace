@@ -34,7 +34,7 @@
               = prototype.name
               .proto-meta
                 .proto-date
-                  Apr 26
+                  = prototype.created_at.strftime('%b %d')
               %ul.proto-tag-list.list-inline
                 %li
                   %a{href: "#", class: "btn btn-default"} iPad

@@ -24,9 +24,9 @@
               = prototype.name
               .proto-meta
                 .proto-user
-                  = link_to "by #{prototype.user.username}", "/users/#{prototype.user.id}"
+                  = link_to "by #{prototype.user.username}", user_path(prototype.user.id)
                 .proto-posted
-                  Apr 26
+                  = prototype.created_at.strftime('%b %d')
               %ul.proto-tag-list.list-inline
                 %li
                   %a{href: "#", class: "btn btn-default"} iPad
