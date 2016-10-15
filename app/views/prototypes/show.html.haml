@@ -21,12 +21,12 @@
         %span.num 20
   .row
     .col-md-9
-      = image_tag(@prototype.images.main[0].image)
+      = image_tag(@prototype.images.main[0].image, width:'650px', height:"400px")
     .col-md-3
       %ul.proto-sub-list.list-group
         - 3.times do |i|
           %li.list-group-item
-            = image_tag(@prototype.images.sub[i].image, width:'180.5px')
+            = image_tag(@prototype.images.sub[i].image, width:'180.5px', height:"200px")
   .row.proto-description
     .col-md-3
       %h4 Catch Copy
