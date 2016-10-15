@@ -10,8 +10,15 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    Prototype.create(prototype_params)
-    redirect_to :root and return
+    @prototype = Prototype.new(prototype_params)
+
+    @prototype.images.build if @prototype.images.blank?
+
+    if @prototype.save
+      redirect_to :root, success: "Successfully created your prototype."
+    else
+      render :new and return
+    end
   end
 
   def show
