@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  belongs_to :prototype, inverse_of: :images, dependent: :destroy
+  belongs_to :prototype, dependent: :destroy
 
   mount_uploader :image, ImageUploader
   enum status: { main: 0, sub: 1 }
