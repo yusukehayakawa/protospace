@@ -3512,9 +3512,7 @@ tbody.collapse.in {
 }
 .dropup,
 .dropdown {
-  position: absolute;
-  top: 10px;
-  left: 20px;
+  position: relative;
 }
 .dropdown-toggle:focus {
   outline: 0;
@@ -3633,6 +3631,11 @@ tbody.collapse.in {
   top: auto;
   bottom: 100%;
   margin-bottom: 2px;
+}
+.drop_menu_location {
+    position: absolute;
+    top: 10px;
+    left: 20px;
 }
 @media (min-width: 768px) {
   .navbar-right .dropdown-menu {
