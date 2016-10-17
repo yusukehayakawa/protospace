@@ -4,6 +4,15 @@ class PrototypesController < ApplicationController
      @prototypes = Prototype.includes(:user)
   end
 
+  def show
+    @prototype = Prototype.find(params[:id])
+  end
+
+  def new
+    @prototype = Prototype.new
+    @prototype.images.build
+  end
+
   def create
     @prototype = current_user.prototypes.new(prototype_params)
 
@@ -16,16 +25,7 @@ class PrototypesController < ApplicationController
     end
   end
 
-  def new
-    @prototype = Prototype.new
-    @prototype.images.build
-  end
-
   def edit
-    @prototype = Prototype.find(params[:id])
-  end
-
-  def show
     @prototype = Prototype.find(params[:id])
   end
 
