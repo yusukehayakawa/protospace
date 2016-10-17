@@ -4,13 +4,17 @@ class PrototypesController < ApplicationController
      @prototypes = Prototype.includes(:user)
   end
 
+  def show
+    @prototype = Prototype.find(params[:id])
+  end
+
   def new
     @prototype = Prototype.new
     @prototype.images.build
   end
 
   def create
-    @prototype = Prototype.new(prototype_params)
+    @prototype = current_user.prototypes.new(prototype_params)
 
     @prototype.images.build if @prototype.images.blank?
 
@@ -21,27 +25,27 @@ class PrototypesController < ApplicationController
     end
   end
 
-  def show
-    @prototype = Prototype.find(params[:id])
-  end
-
   def edit
     @prototype = Prototype.find(params[:id])
   end
 
   def update
-    
-    @prototype = Prototype.find(params[:id])
-    if @prototype.update(prototype_params)
+    if current_user.prototypes.find(params[:id]).update(prototype_params)
        redirect_to :root, success: "Prototype was successfully updated."
     else
       render :edit
     end
   end
 
+  def destroy
+    if Prototype.find(params[:id]).destroy
+      redirect_to :root, success: "Prototype was successfully deleted."
+    end
+  end
+
   private
   def prototype_params
-    params.require(:prototype).permit(:name, :catch_copy, :concept, images_attributes: [:id, :image, :prototype_id, :status]).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:name, :catch_copy, :concept, images_attributes: [:image, :prototype_id, :status])
   end
 
 end
