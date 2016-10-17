@@ -10,7 +10,7 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    @prototype = Prototype.new(prototype_params)
+    @prototype = current_user.prototypes.new(prototype_params)
 
     @prototype.images.build if @prototype.images.blank?
 
@@ -30,8 +30,8 @@ class PrototypesController < ApplicationController
   end
 
   def update
-    @prototype = Prototype.find(params[:id])
-    if @prototype.update(prototype_params)
+    prototype = current_user.prototypes.find(params[:id])
+    if prototype.update(prototype_params)
        redirect_to :root, success: "Prototype was successfully updated."
     else
       render :edit
@@ -39,15 +39,15 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    @prototype = Prototype.find(params[:id])
-    if @prototype.destroy
+    prototype = Prototype.find(params[:id])
+    if prototype.destroy
       redirect_to :root, success: "Prototype was successfully deleted."
     end
   end
 
   private
   def prototype_params
-    params.require(:prototype).permit(:name, :catch_copy, :concept, images_attributes: [:id, :image, :prototype_id, :status]).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:name, :catch_copy, :concept, images_attributes: [:id, :image, :prototype_id, :status])
   end
 
 end
