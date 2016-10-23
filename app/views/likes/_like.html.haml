@@ -1,0 +1,21 @@
+.likes-box
+  - if user_signed_in?
+    - if prototype.like_user(current_user)
+      = button_to prototype_like_path(prototype, like), method: :delete, class: "btn btn-default decrement-button", id: "like-button", remote: true do
+        = image_tag("/assets/icon_heart_red.svg")
+        LIKE
+        %span
+          = prototype.likes_count
+    - else
+      = button_to prototype_likes_path(prototype), method: :post, class: "btn btn-default increment-button", id: "like-button", remote: true do
+        = image_tag("/assets/icon_heart.svg")
+        LIKE
+        %span
+          = prototype.likes_count
+  - else
+    = link_to new_user_session_path do
+      .btn.btn-default.increment-button
+        = image_tag("/assets/icon_heart.svg")
+        LIKE
+        %span.num#like-sum #{prototype.likes_count}
+
