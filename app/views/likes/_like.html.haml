@@ -13,9 +13,8 @@
         %span
           = prototype.likes_count
   - else
-    = link_to new_user_session_path do
-      .btn.btn-default.increment-button
-        = image_tag("/assets/icon_heart.svg")
-        LIKE
-        %span.num#like-sum #{prototype.likes_count}
+    = button_to new_user_session_path, class: "btn btn-default increment-button" do
+      = image_tag("/assets/icon_heart.svg")
+      LIKE
+      %span.num#like-sum #{prototype.likes_count}
 
