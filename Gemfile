@@ -52,3 +52,5 @@ gem 'devise'
 gem 'pry-rails'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'bullet', :group => :development
+
