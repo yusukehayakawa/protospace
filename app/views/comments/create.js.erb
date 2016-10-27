@@ -1,4 +1,5 @@
 $('#comment_text').val('');
 $('#comment_list').html(
-  '<%= j(render partial: "comments/comment", collection: @prototype.comments) %>'
+  '<%= j(render partial: "comments/comment", collection: @prototype.comments.eager_load(:user)) %>'
 );
+location.reload('#comment-count');

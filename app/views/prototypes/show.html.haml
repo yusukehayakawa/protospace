@@ -43,12 +43,12 @@
     .row.proto-comments
       %h4.col-md-12
         Comments
-        %span.num
+        %span.num#comment-count
           (#{@prototype.comments_count})
       .col-md-8#comment_area
         #comment_list
-          = render partial: "comments/comment", collection: @prototype.comments
-        = form_for @comments, url: prototype_comments_path(@prototype, @comment),method: "post", remote: true do |f|
+          = render partial: "comments/comment", collection: @prototype.comments.eager_load(:user)
+        = form_for @comment, url: prototype_comments_path(@prototype, @comment),method: "post", remote: true do |f|
           .form-inline#new_comment
             %h4 Write a comment
             .row
