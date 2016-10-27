@@ -5,10 +5,10 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    @prototype = Prototype.find(params[:id])
+    find_params
     @like = current_user.likes(prototype_id: params[:prototype_id]) if user_signed_in?
-    @comment = Comment.find(params[:id]) unless @comment.blank?
-    @comments = Comment.new
+    @comments = Comments.find(params[:id]) unless @comments.blank?
+    @comment = Comment.new
   end
 
   def new
@@ -29,11 +29,11 @@ class PrototypesController < ApplicationController
   end
 
   def edit
-    @prototype = Prototype.find(params[:id])
+    find_params
   end
 
   def update
-    if current_user.prototypes.find(params[:id]).update(prototype_params)
+    if current_user.find_params.update(prototype_params)
        redirect_to :root, success: "Prototype was successfully updated."
     else
       render :edit
@@ -41,9 +41,13 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    if Prototype.find(params[:id]).destroy
+    if find_params.destroy
       redirect_to :root, success: "Prototype was successfully deleted."
     end
+  end
+
+  def find_params
+    @prototype = Prototype.find(params[:id])
   end
 
   private

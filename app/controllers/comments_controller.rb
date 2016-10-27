@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   def create
-    @comment = current_user.comments.create(comment_params)
+    current_user.comments.create(comment_params)
     @prototype = Prototype.find(params[:prototype_id])
   end
 
