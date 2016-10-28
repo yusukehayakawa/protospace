@@ -1,5 +1,7 @@
 class PrototypesController < ApplicationController
 
+  before_action :find_params, only: [:show, :edit, :update, :destroy]
+
   def index
      @prototypes = Prototype.includes(:user)
   end
@@ -9,6 +11,7 @@ class PrototypesController < ApplicationController
     @like = current_user.likes(prototype_id: params[:prototype_id]) if user_signed_in?
     @comments = Comments.find(params[:id]) unless @comments.blank?
     @comment = Comment.new
+    @comments = @prototype.comments.eager_load(:user)
   end
 
   def new
@@ -46,13 +49,13 @@ class PrototypesController < ApplicationController
     end
   end
 
-  def find_params
-    @prototype = Prototype.find(params[:id])
-  end
-
   private
   def prototype_params
     params.require(:prototype).permit(:name, :catch_copy, :concept, images_attributes: [:image, :prototype_id, :status])
+  end
+
+  def find_params
+    @prototype = Prototype.find(params[:id])
   end
 
 end
