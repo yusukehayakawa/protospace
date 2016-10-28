@@ -47,7 +47,7 @@
           (#{@prototype.comments_count})
       .col-md-8#comment_area
         #comment_list
-          = render partial: "comments/comment", collection: @prototype.comments.eager_load(:user)
+          = render partial: "comments/comment", collection: @comments
         = form_for @comment, url: prototype_comments_path(@prototype, @comment),method: "post", remote: true do |f|
           .form-inline#new_comment
             %h4 Write a comment
