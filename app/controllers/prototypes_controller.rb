@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
 
-  before_action :find_params, only: [:show, :edit, :update, :destroy]
+  before_action :find_params, only: [:show, :edit, :destroy]
 
   def index
      @prototypes = Prototype.includes(:user)
@@ -36,7 +36,7 @@ class PrototypesController < ApplicationController
   end
 
   def update
-    if current_user.find_params.update(prototype_params)
+    if current_user.prototypes.find(params[:id]).update(prototype_params)
        redirect_to :root, success: "Prototype was successfully updated."
     else
       render :edit
