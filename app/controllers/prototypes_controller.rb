@@ -7,7 +7,6 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    find_params
     @like = current_user.likes(prototype_id: params[:prototype_id]) if user_signed_in?
     @comments = Comments.find(params[:id]) unless @comments.blank?
     @comment = Comment.new
@@ -32,7 +31,6 @@ class PrototypesController < ApplicationController
   end
 
   def edit
-    find_params
   end
 
   def update
