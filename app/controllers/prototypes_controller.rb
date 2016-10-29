@@ -1,12 +1,15 @@
 class PrototypesController < ApplicationController
 
+  before_action :find_params, only: [:show, :edit, :destroy]
+
   def index
      @prototypes = Prototype.includes(:user)
   end
 
   def show
-    @prototype = Prototype.find(params[:id])
     @like = current_user.likes(prototype_id: params[:prototype_id]) if user_signed_in?
+    @comment = Comment.new
+    @comments = @prototype.comments.eager_load(:user)
   end
 
   def new
@@ -27,7 +30,6 @@ class PrototypesController < ApplicationController
   end
 
   def edit
-    @prototype = Prototype.find(params[:id])
   end
 
   def update
@@ -39,7 +41,7 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    if Prototype.find(params[:id]).destroy
+    if find_params.destroy
       redirect_to :root, success: "Prototype was successfully deleted."
     end
   end
@@ -47,6 +49,10 @@ class PrototypesController < ApplicationController
   private
   def prototype_params
     params.require(:prototype).permit(:name, :catch_copy, :concept, images_attributes: [:image, :prototype_id, :status])
+  end
+
+  def find_params
+    @prototype = Prototype.find(params[:id])
   end
 
 end
