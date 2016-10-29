@@ -8,7 +8,6 @@ class PrototypesController < ApplicationController
 
   def show
     @like = current_user.likes(prototype_id: params[:prototype_id]) if user_signed_in?
-    @comments = Comments.find(params[:id]) unless @comments.blank?
     @comment = Comment.new
     @comments = @prototype.comments.eager_load(:user)
   end
