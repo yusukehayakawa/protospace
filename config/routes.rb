@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   end
     scope module: :prototypes do
       resources :populars, only: :index
+      resources :newests, only: :index
   end
 end
