@@ -3,7 +3,6 @@ class PrototypesController < ApplicationController
   before_action :find_params, only: [:show, :edit, :destroy]
 
   def index
-     @prototypes = Prototype.includes(:user)
   end
 
   def show
