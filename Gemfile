@@ -53,4 +53,5 @@ gem 'pry-rails'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'bullet', :group => :development
+gem 'acts-as-taggable-on', '~> 3.4'
 
