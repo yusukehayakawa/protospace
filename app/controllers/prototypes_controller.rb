@@ -51,7 +51,7 @@ class PrototypesController < ApplicationController
   end
 
   def find_params
-    @prototype = Prototype.find(params[:id])
+    @prototype = Prototype.includes(:user, :tags).find(params[:id])
   end
 
 end
