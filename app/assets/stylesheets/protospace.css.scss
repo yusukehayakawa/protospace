@@ -642,7 +642,13 @@ body {
 }
 
 .tags-list li {
+  width: 33.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
   margin-bottom: 10px;
+  float: left;
 }
 
 .tags-list li a {
