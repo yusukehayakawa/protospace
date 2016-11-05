@@ -3,6 +3,4 @@
     .tags-list
       %h2 Tags list
       .ul
-        - @tags.each do |tag|
-          %li.col-md-4
-            = link_to "#{tag.name}", tag_path(tag.id), class: "btn btn-default"
+        = render partial: "tag", collection: @tags
