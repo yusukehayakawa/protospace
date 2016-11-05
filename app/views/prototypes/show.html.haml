@@ -35,9 +35,8 @@
     .col-md-3
       %h4 Tag List
       %ul.proto-tag-list.list-inline
-        - @prototype.tags.each do |tag|
-          %li
-            =link_to "#{tag.name}", tag_path(tag.id), class: "btn btn-default"
+        = render partial: "tags/tag", collection: @prototype.tags
+
   -if user_signed_in?
     .row.proto-comments
       %h4.col-md-12
