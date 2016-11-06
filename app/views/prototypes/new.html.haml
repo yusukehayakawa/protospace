@@ -33,11 +33,11 @@
           %h4 Tag List
           .row
             .col-md-3
-              %input{type: "text", placeholder: "Web Design"}/
+              = text_field_tag "prototype[tag][]", "", placeholder: "Web Design", maxlength: 6
             .col-md-3
-              %input{type: "text", placeholder: "UI"}/
+              = text_field_tag "prototype[tag][]", "", placeholder: "UI", maxlength: 6
             .col-md-3
-              %input{type: "text", placeholder: "Application"}/
+              = text_field_tag "prototype[tag][]", "", placeholder: "Application", maxlength: 6
     .row.text-center.proto-btn
       = f.submit class: "btn btn-lg btn-primary btn-block", value: "Publish"
 
