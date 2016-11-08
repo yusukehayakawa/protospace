@@ -11,6 +11,7 @@ $(function(){
     reader.onload = (function(file) {
       return function(e) {
         $(".media-object").attr("src", e.target.result);
+        $(".media-object").show();
       };
     })(file);
 
