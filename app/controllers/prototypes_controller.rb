@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
 
-  before_action :find_params, only: [:show, :edit, :destroy]
+  before_action :find_params, only: [:show, :edit, :destroy, :update]
 
   def index
   end
@@ -32,7 +32,7 @@ class PrototypesController < ApplicationController
   end
 
   def update
-    if current_user.prototypes.find(params[:id]).update(prototype_params)
+    if find_params.update(prototype_params)
        redirect_to :root, success: "Prototype was successfully updated."
     else
       render :edit
@@ -47,7 +47,7 @@ class PrototypesController < ApplicationController
 
   private
   def prototype_params
-    params.require(:prototype).permit(:name, :catch_copy, :concept, images_attributes: [:image, :prototype_id, :status]).merge(tag_list: params[:prototype][:tag])
+    params.require(:prototype).permit(:name, :catch_copy, :concept, images_attributes: [:id, :image, :prototype_id, :status]).merge(tag_list: params[:prototype][:tag])
   end
 
   def find_params
