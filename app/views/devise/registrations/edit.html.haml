@@ -9,6 +9,7 @@
             .user-name.col-md-10
               = f.text_field :username, type: "text", placeholder: "Username", autofocus: true
             .user-image.col-md-2
+              = image_tag(current_user.avatar, id: "user_avatar", class: "media-object", style: "width:100%; height:100%;")
               = button_tag "Change Image", class: "btn btn-primary"
               = f.file_field :avatar
           .user-user-email.row

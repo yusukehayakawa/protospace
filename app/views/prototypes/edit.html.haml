@@ -1,5 +1,4 @@
-
-.container.proto-new{action: "/prototypes"}
+.container.proto-new
   - if @prototype.errors.any?
     .alert.alert-danger
       - @prototype.errors.full_messages.each do |msg|
@@ -15,6 +14,7 @@
           .cover-image-upload
             = f.fields_for :images, @prototype.images.main[0] do |images_form|
               = images_form.file_field :image
+              = image_tag(images_form.object.image, id: "main_preview", style: "width:100%; height:100%;")
               = images_form.hidden_field :status, value: "main"
         .col-md-12
           %ul.proto-sub-list.list-group
@@ -22,6 +22,7 @@
               %li.list-group-item.col-md-4
                 .image-upload
                   = images_form.file_field :image
+                  = image_tag(images_form.object.image, id: "sub_preview", class: "preview-image", style: "width:100%; height:100%;")
                   = images_form.hidden_field :status, value: "sub"
       .row.proto-description
         .col-md-12
