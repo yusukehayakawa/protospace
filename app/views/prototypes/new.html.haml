@@ -1,4 +1,3 @@
-
 .container.proto-new{action: "/prototypes"}
   - if @prototype.errors.any?
     .alert.alert-danger
@@ -15,14 +14,16 @@
           .cover-image-upload
             = f.fields_for :images do |images_form|
               = images_form.file_field :image
+              = image_tag("", id: "main_preview", style: "display:none; width:100%; height:100%;")
               = images_form.hidden_field :status, value: "main"
         .col-md-12
           %ul.proto-sub-list.list-group
             - 3.times do
               = f.fields_for :images do |images_form|
-                %li.list-group-item.col-md-4
-                  .image-upload
+                %li.list-group-item.col-md-4.appear_form
+                  .image-upload{ id: "js-image"}
                     = images_form.file_field :image
+                    = image_tag("", id: "sub_preview", class: "preview-image", style: "display:none; width:100%; height:100%;")
                     = images_form.hidden_field :status, value: "sub"
       .row.proto-description
         .col-md-12

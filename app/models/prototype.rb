@@ -6,7 +6,7 @@ class Prototype < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   validates_associated :images
   validates :name, :catch_copy, :concept, presence: true
-  accepts_nested_attributes_for :images, reject_if: proc { |attribute| attribute[:image].blank? }
+  accepts_nested_attributes_for :images, reject_if: proc { |attributes| attributes[:image].blank? }
   acts_as_taggable
 
   def like_user(user_id)
