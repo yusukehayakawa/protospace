@@ -32,7 +32,7 @@ class PrototypesController < ApplicationController
   end
 
   def update
-    if find_params.update(prototype_params)
+    if @prototype.update(prototype_params)
        redirect_to :root, success: "Prototype was successfully updated."
     else
       render :edit
@@ -40,7 +40,7 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    if find_params.destroy
+    if @prototype.destroy
       redirect_to :root, success: "Prototype was successfully deleted."
     end
   end
