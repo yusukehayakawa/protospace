@@ -55,4 +55,6 @@ gem 'rmagick'
 gem 'bullet', :group => :development
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'kaminari'
+gem 'fog'
+gem 'config'
 
