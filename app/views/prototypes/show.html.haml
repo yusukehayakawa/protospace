@@ -19,10 +19,17 @@
     .col-md-9
       = image_tag(@prototype.images.main[0].image, width:'650px', height:"400px")
     .col-md-3
-      %ul.proto-sub-list.list-group
-        - 3.times do |i|
-          %li.list-group-item
-            = image_tag(@prototype.images.sub[i].image, width:'180.5px', height:"200px")
+      - if @prototype.images.sub.present?
+        %ul.proto-sub-list.list-group
+          - if @prototype.images.sub[0].present?
+            %li.list-group-item
+              = image_tag(@prototype.images.sub[0].image, width:'180.5px', height:"200px")
+          - if @prototype.images.sub[1].present?
+            %li.list-group-item
+              = image_tag(@prototype.images.sub[1].image, width:'180.5px', height:"200px")
+          - if @prototype.images.sub[2].present?
+            %li.list-group-item
+              = image_tag(@prototype.images.sub[2].image, width:'180.5px', height:"200px")
   .row.proto-description
     .col-md-3
       %h4 Catch Copy
