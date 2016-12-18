@@ -1,6 +1,7 @@
 class PrototypesController < ApplicationController
 
   before_action :find_params, only: [:show, :edit, :destroy, :update]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
   end
@@ -21,11 +22,11 @@ class PrototypesController < ApplicationController
 
     @prototype.images.build if @prototype.images.blank?
 
-    if @prototype.save
-      redirect_to :root, success: "Successfully created your prototype."
-    else
-      render :new and return
-    end
+      if @prototype.save
+        redirect_to :root, success: "Successfully created your prototype."
+      else
+        render :new and return
+      end
   end
 
   def edit
