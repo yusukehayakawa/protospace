@@ -58,21 +58,4 @@ describe UsersController, type: :controller do
       end
     end
    end
-
-  # describe 'without user login' do
-  #   context 'GET #edit' do
-  #     let(:user){ create(:user) }
-  #     it "redirects sign_in page" do
-  #       get :edit
-  #       expect(response).to redirect_to new_user_session_path
-  #     end
-  #   end
-
-  #   context 'PATCH #update' do
-  #     it "redirects sign_in page" do
-  #       patch :update
-  #       expect(response).to redirect_to new_user_session_path
-  #     end
-  #   end
-  # end
 end
