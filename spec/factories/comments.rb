@@ -1,6 +1,7 @@
 include ActionDispatch::TestProcess
 FactoryGirl.define do
   factory :comment do
-    text    Faker::Lorem.sentences
+    text    { Faker::Lorem.sentences }
   end
 end
+
