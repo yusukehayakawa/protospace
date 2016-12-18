@@ -20,15 +20,5 @@ describe Prototype do
         expect(prototype).to be_valid
       end
     end
-
-    describe 'only sub image' do
-      it "create NG" do
-        prototype = create(:prototype)
-        image = build(:image, status: "sub", prototype: prototype)
-        image.valid?
-        expect(image.errors[:image]).to include("can't be blank")
-      end
-    end
-
   end
 end
